@@ -1,3 +1,29 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "text": "wash dishes",
+      "date": "2022-12-27T09:25:05.468Z",
+      "id": 1
+    },
+    {
+      "text": "walk the dog",
+      "date": "2022-12-27T09:27:17.052Z",
+      "id": 2
+    },
+    {
+      "text": "write assignments",
+      "date": "2022-12-27T09:29:05.572Z",
+      "id": 4
+    },
+    {
+      "text": "study for endsems",
+      "date": "2022-12-27T09:30:40.412Z",
+      "id": 5
+    },
+    {
+      "text": "drink min 3L of water",
+      "date": "2022-12-27T09:39:25.465Z",
+      "id": 6
+    }
+  ]
 }

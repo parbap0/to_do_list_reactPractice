@@ -1,19 +1,27 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
+import axios, { all } from "axios";
 
 function Form(props) {
   const [task, setTask] = useState("");
   const [allTasks, setAllTasks] = useState([]);
+  const [id, setId] = useState(0);
+  useEffect(() => {
+    getAll().then((initialTasks) => {
+      console.log(initialTasks);
+
+      setAllTasks(initialTasks);
+    });
+  }, []);
   const addTask = (e) => {
     e.preventDefault();
+    setId(id + 1);
     const taskObject = {
       text: task,
       date: new Date().toISOString(),
-      id: allTasks.length + 1,
+      id: id,
     };
     setTask(taskObject);
     create(taskObject);
-    setAllTasks(allTasks.concat(taskObject));
 
     setTask("");
     console.log(allTasks);
@@ -21,10 +29,19 @@ function Form(props) {
   const handleTaskChange = (e) => {
     setTask(e.target.value);
   };
-  const create = (newObject) => {
-    const baseUrl = "http://localhost:3001/tasks";
-    const request = axios.post(baseUrl, newObject);
+  const baseUrl = "http://localhost:3001/tasks";
+  const getAll = () => {
+    const request = axios.get(baseUrl);
+
     return request.then((response) => response.data);
+  };
+  const create = (newObject) => {
+    const request = axios.post(baseUrl, newObject);
+    return request.then((response) => {
+      console.log(response.data);
+      setAllTasks(allTasks.concat(response.data));
+      console.log(allTasks);
+    });
   };
   return (
     <div>
